@@ -6,6 +6,7 @@
 
 #include "OmxCoreLibLinker.h"
 #include "mozilla/ArrayUtils.h"
+#include "mozilla/Preferences.h"
 #include "MainThreadUtils.h"
 #include "prlink.h"
 #include "PlatformDecoderModule.h"
@@ -68,7 +69,11 @@ OmxCoreLibLinker::Link()
 
   MOZ_ASSERT(NS_IsMainThread());
 
-  auto libPath = Preferences::GetCString("media.pdm-omx.core-lib-path");
+  nsAutoCString libPath;
+  auto rv = Preferences::GetCString("media.pdm-omx.core-lib-path", libPath);
+  if (NS_FAILED(rv)) {
+    return false;
+  }
   if (!libPath.IsEmpty() && TryLinkingLibrary(libPath.Data()))
     return true;
 

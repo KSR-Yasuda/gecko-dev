@@ -101,10 +101,8 @@ protected:
 
 OmxDataDecoder::OmxDataDecoder(const TrackInfo& aTrackInfo,
                                TaskQueue* aTaskQueue,
-                               MediaDataDecoderCallback* aCallback,
                                layers::ImageContainer* aImageContainer)
-  : mMonitor("OmxDataDecoder")
-  , mOmxTaskQueue(CreateMediaDecodeTaskQueue())
+  : mOmxTaskQueue(CreateMediaDecodeTaskQueue("OmxDataDecoder"))
   , mReaderTaskQueue(aTaskQueue)
   , mImageContainer(aImageContainer)
   , mWatchManager(this, mOmxTaskQueue)

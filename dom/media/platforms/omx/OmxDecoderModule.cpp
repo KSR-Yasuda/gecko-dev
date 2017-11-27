@@ -40,7 +40,6 @@ OmxDecoderModule::CreateVideoDecoder(const CreateDecoderParams& aParams)
 {
   RefPtr<OmxDataDecoder> decoder = new OmxDataDecoder(aParams.mConfig,
                                                       aParams.mTaskQueue,
-                                                      aParams.mCallback,
                                                       aParams.mImageContainer);
   return decoder.forget();
 }
@@ -50,7 +49,6 @@ OmxDecoderModule::CreateAudioDecoder(const CreateDecoderParams& aParams)
 {
   RefPtr<OmxDataDecoder> decoder = new OmxDataDecoder(aParams.mConfig,
                                                       aParams.mTaskQueue,
-                                                      aParams.mCallback,
                                                       nullptr);
   return decoder.forget();
 }
