@@ -71,9 +71,6 @@ OmxCoreLibLinker::Link()
 
   nsAutoCString libPath;
   auto rv = Preferences::GetCString("media.pdm-omx.core-lib-path", libPath);
-  if (NS_FAILED(rv)) {
-    return false;
-  }
   if (!libPath.IsEmpty() && TryLinkingLibrary(libPath.Data()))
     return true;
 
